@@ -1,194 +1,156 @@
-import React, { useState } from "react";
+
+import React from "react";
 import { Button } from "@/components/ui/button";
-import { toast } from "@/hooks/use-toast";
-import { Loader2, ArrowRight, ArrowLeft } from "lucide-react";
-import GoogleAuthForm from "@/components/GoogleAuthForm";
-import GoogleConnectionStatus from "@/components/GoogleConnectionStatus";
-import GoogleAdManagerTable from "@/components/GoogleAdManagerTable";
-import { fetchAdManagerReport } from "@/lib/google-admanager";
-import { disconnectGoogle, getGoogleStatus, getStoredGoogleCreds } from "@/lib/google-oauth";
-
-const APP_TITLE = "Google Ad Manager Analytics Fetcher";
-
-// UI states
-type ConnState = "not_connected" | "connecting" | "connected" | "fetching" | "error";
+import { ArrowRight, TrendingUp, Shield, Globe } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Index: React.FC = () => {
-  const [connState, setConnState] = useState<ConnState>("not_connected");
-  const [showAuthModal, setShowAuthModal] = useState(false);
-  const [data, setData] = useState<any>(null); // report data (raw)
-  const [error, setError] = useState<string | null>(null);
-  const [showRaw, setShowRaw] = useState(false);
-
-  // Check localstorage creds for "connected" state
-  React.useEffect(() => {
-    if (getGoogleStatus() === "connected") setConnState("connected");
-    else setConnState("not_connected");
-  }, []);
-
-  // Connect action
-  const handleConnect = () => setShowAuthModal(true);
-
-  // Disconnect
-  const handleDisconnect = () => {
-    disconnectGoogle();
-    setConnState("not_connected");
-    setData(null);
-    setError(null);
-    toast({ title: "Disconnected", description: "Google connection reset." });
-  };
-
-  // Callback after successful OAuth/token exchange
-  const handleAuthSuccess = () => {
-    setShowAuthModal(false);
-    setConnState("connected");
-    toast({
-      title: "Connected!",
-      description: "Google Ad Manager access granted.",
-    });
-  };
-
-  // Fetch data from Ad Manager after connection
-  async function handleFetch() {
-    setConnState("fetching");
-    setError(null);
-    setData(null);
-
-    try {
-      const creds = getStoredGoogleCreds();
-      if (!creds) {
-        setConnState("error");
-        setError("No Google credentials found.");
-        toast({ title: "Error", description: "Missing credentials." });
-        return;
-      }
-      // Run API fetch
-      const report = await fetchAdManagerReport(creds);
-      if (report && report.rows?.length) {
-        setData(report);
-        setConnState("connected");
-        setShowRaw(false);
-        toast({ title: "Success", description: "Ad Manager data fetched." });
-      } else {
-        setData(report);
-        setConnState("connected");
-        setError("No data returned (possible MCM inactive, or account empty).");
-        toast({
-          title: "Connected (no data)",
-          description: "No analytics data found — check Ad Manager setup or MCM status.",
-        });
-      }
-    } catch (err: any) {
-      setConnState("error");
-      setError(err?.message || "Failed to fetch Ad Manager data");
-      setData(null);
-      toast({ title: "Error", description: err?.message || "API call error." });
-    }
-  }
-
-  // UI layout
   return (
-    <div className="flex flex-col items-center min-h-screen bg-background px-0 md:px-10 py-8 w-full">
-      <header className="w-full max-w-4xl mb-6 flex flex-row items-center justify-between gap-4">
-        <div>
-          <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight mb-2">{APP_TITLE}</h1>
-          <GoogleConnectionStatus state={connState} error={error} />
-        </div>
-        <div className="flex items-center gap-2">
-          {connState !== "connected" && (
-            <Button size="lg" className="bg-blue-600 hover:bg-blue-700" onClick={handleConnect}>
-              <ArrowRight className="w-5 h-5 mr-2" />
-              Connect to Google Ad Manager
-            </Button>
-          )}
-          {connState === "connected" && (
-            <Button size="sm" variant="secondary" className="border" onClick={handleDisconnect}>
-              <ArrowLeft className="w-4 h-4 mr-1" />
-              Disconnect
-            </Button>
-          )}
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+      {/* Header */}
+      <header className="bg-white shadow-sm border-b">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16">
+            <div className="flex items-center">
+              <TrendingUp className="h-8 w-8 text-blue-600" />
+              <span className="ml-2 text-xl font-bold text-gray-900">InvestPro</span>
+            </div>
+            <nav className="hidden md:flex space-x-8">
+              <a href="#features" className="text-gray-600 hover:text-gray-900">Features</a>
+              <a href="#pricing" className="text-gray-600 hover:text-gray-900">Pricing</a>
+              <a href="#about" className="text-gray-600 hover:text-gray-900">About</a>
+            </nav>
+            <div className="flex items-center space-x-4">
+              <Link to="/login">
+                <Button variant="ghost">Login</Button>
+              </Link>
+              <Link to="/register">
+                <Button className="bg-blue-600 hover:bg-blue-700">
+                  Get Started
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </Link>
+            </div>
+          </div>
         </div>
       </header>
 
-      <main className="w-full max-w-4xl">
-        {/* Data Section */}
-        {connState === "connected" && (
-          <>
-            <div className="flex items-center mb-4 gap-2">
-              <Button onClick={handleFetch} size="sm" disabled={connState === "fetching"}>
-                {connState === "fetching" ? (
-                  <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                ) : (
-                  ""
-                )}
-                Fetch Data
+      {/* Hero Section */}
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="text-center">
+          <h1 className="text-4xl md:text-6xl font-extrabold text-gray-900 mb-8">
+            Invest in <span className="text-blue-600">Crypto</span> & <span className="text-green-600">Fiat</span>
+            <br />with Confidence
+          </h1>
+          <p className="text-xl text-gray-600 mb-12 max-w-3xl mx-auto">
+            Trade cryptocurrencies and manage multiple fiat currencies including Nigerian Naira (NGN), 
+            USD, EUR and more. Professional-grade tools for both beginners and experts.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link to="/register">
+              <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-lg px-8 py-3">
+                Start Trading Now
+                <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => setShowRaw((prev) => !prev)}
-                disabled={!data}
-              >
-                {showRaw ? "Show Table" : "Show Raw JSON"}
+            </Link>
+            <Link to="/dashboard">
+              <Button size="lg" variant="outline" className="text-lg px-8 py-3">
+                View Demo Dashboard
               </Button>
-            </div>
-            <div className="w-full border rounded-lg bg-card shadow p-4 transition">
-              {!data && !error && (
-                <div className="text-muted-foreground">No data. Click 'Fetch Data'.</div>
-              )}
-              {data && !showRaw && (
-                <GoogleAdManagerTable report={data} />
-              )}
-              {data && showRaw && (
-                <pre className="max-h-80 overflow-auto text-xs bg-muted rounded p-2">{JSON.stringify(data, null, 2)}</pre>
-              )}
-              {error && (
-                <div className="text-destructive font-medium">{error}</div>
-              )}
-            </div>
-          </>
-        )}
-        {connState === "fetching" && (
-          <div className="flex flex-col items-center gap-4 mt-16">
-            <Loader2 className="w-10 h-10 animate-spin text-blue-600" />
-            <div className="text-lg font-semibold">Fetching data from Google Ad Manager...</div>
+            </Link>
           </div>
-        )}
-        {connState === "not_connected" && (
-          <div className="border rounded-lg bg-card shadow px-8 py-6 max-w-xl mx-auto">
-            <div className="text-muted-foreground font-medium mb-2">
-              Not connected to Google Ad Manager.
+        </div>
+
+        {/* Features Section */}
+        <section id="features" className="mt-24">
+          <h2 className="text-3xl font-bold text-center text-gray-900 mb-16">
+            Why Choose InvestPro?
+          </h2>
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="bg-white p-8 rounded-lg shadow-md">
+              <TrendingUp className="h-12 w-12 text-blue-600 mb-4" />
+              <h3 className="text-xl font-semibold mb-4">Multi-Currency Support</h3>
+              <p className="text-gray-600">
+                Trade cryptocurrencies and manage Nigerian Naira, USD, EUR, GBP and other major currencies all in one platform.
+              </p>
             </div>
-            <Button size="lg" className="bg-blue-600 hover:bg-blue-700" onClick={handleConnect}>
-              <ArrowRight className="w-5 h-5 mr-2" />
-              Connect to Google Ad Manager
+            <div className="bg-white p-8 rounded-lg shadow-md">
+              <Shield className="h-12 w-12 text-green-600 mb-4" />
+              <h3 className="text-xl font-semibold mb-4">Bank-Level Security</h3>
+              <p className="text-gray-600">
+                Your investments are protected with advanced encryption, two-factor authentication, and secure cold storage.
+              </p>
+            </div>
+            <div className="bg-white p-8 rounded-lg shadow-md">
+              <Globe className="h-12 w-12 text-purple-600 mb-4" />
+              <h3 className="text-xl font-semibold mb-4">Global Markets</h3>
+              <p className="text-gray-600">
+                Access global cryptocurrency markets and international fiat currencies with real-time pricing and analytics.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* CTA Section */}
+        <section className="mt-24 bg-blue-600 rounded-lg p-12 text-center text-white">
+          <h2 className="text-3xl font-bold mb-4">Ready to Start Investing?</h2>
+          <p className="text-xl mb-8 opacity-90">
+            Join thousands of investors who trust InvestPro for their crypto and fiat investments.
+          </p>
+          <Link to="/register">
+            <Button size="lg" variant="secondary" className="text-lg px-8 py-3">
+              Create Free Account
+              <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
-            <ul className="mt-6 text-xs text-muted-foreground list-disc list-inside">
-              <li>Your credentials are only held in memory/localStorage (for demo — not for production use!)</li>
-              <li>
-                You must set up a Google Cloud Project with OAuth2 credentials:<br />
-                <a
-                  className="underline text-blue-700"
-                  href="https://console.cloud.google.com"
-                  target="_blank" rel="noopener noreferrer"
-                >Google Cloud Console &rarr;</a>
-              </li>
-              <li>
-                Enable "Ad Manager API" and create OAuth2 credentials (Client ID/Secret).
-              </li>
-              <li>
-                Set <strong>Redirect URI</strong> to <code>http://localhost:8080</code> (or your deployed app URL)
-              </li>
-            </ul>
-          </div>
-        )}
+          </Link>
+        </section>
       </main>
 
-      <GoogleAuthForm
-        open={showAuthModal}
-        setOpen={setShowAuthModal}
-        onSuccess={handleAuthSuccess}
-      />
+      {/* Footer */}
+      <footer className="bg-gray-900 text-white mt-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          <div className="grid md:grid-cols-4 gap-8">
+            <div>
+              <div className="flex items-center mb-4">
+                <TrendingUp className="h-6 w-6 text-blue-400" />
+                <span className="ml-2 text-lg font-bold">InvestPro</span>
+              </div>
+              <p className="text-gray-400">
+                Professional cryptocurrency and fiat investment platform.
+              </p>
+            </div>
+            <div>
+              <h3 className="font-semibold mb-4">Platform</h3>
+              <ul className="space-y-2 text-gray-400">
+                <li><Link to="/dashboard" className="hover:text-white">Dashboard</Link></li>
+                <li><Link to="/trading" className="hover:text-white">Trading</Link></li>
+                <li><Link to="/wallet" className="hover:text-white">Wallet</Link></li>
+                <li><Link to="/portfolio" className="hover:text-white">Portfolio</Link></li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="font-semibold mb-4">Support</h3>
+              <ul className="space-y-2 text-gray-400">
+                <li><a href="#" className="hover:text-white">Help Center</a></li>
+                <li><a href="#" className="hover:text-white">Contact Us</a></li>
+                <li><a href="#" className="hover:text-white">API Documentation</a></li>
+                <li><a href="#" className="hover:text-white">Security</a></li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="font-semibold mb-4">Legal</h3>
+              <ul className="space-y-2 text-gray-400">
+                <li><a href="#" className="hover:text-white">Terms of Service</a></li>
+                <li><a href="#" className="hover:text-white">Privacy Policy</a></li>
+                <li><a href="#" className="hover:text-white">Compliance</a></li>
+              </ul>
+            </div>
+          </div>
+          <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+            <p>&copy; 2024 InvestPro. All rights reserved.</p>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 };
