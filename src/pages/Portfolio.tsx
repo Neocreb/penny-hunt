@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -13,7 +12,7 @@ import {
   Banknote,
   RefreshCw
 } from "lucide-react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { toast } from "@/hooks/use-toast";
 
 interface PortfolioAsset {
@@ -140,17 +139,6 @@ const Portfolio: React.FC = () => {
               <TrendingUp className="h-8 w-8 text-blue-600" />
               <span className="ml-2 text-xl font-bold text-gray-900">InvestPro</span>
             </div>
-            <nav className="hidden md:flex space-x-8">
-              <Button variant="ghost" onClick={() => navigate("/dashboard")}>
-                Dashboard
-              </Button>
-              <Button variant="ghost" onClick={() => navigate("/trading")}>
-                Trading
-              </Button>
-              <Button variant="ghost" onClick={() => navigate("/wallet")}>
-                Wallet
-              </Button>
-            </nav>
             <div className="flex items-center space-x-4">
               <Button variant="ghost" onClick={handleRefresh}>
                 <RefreshCw className="h-4 w-4 mr-2" />

@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -11,13 +10,11 @@ import {
   Wallet as WalletIcon, 
   Plus,
   Minus,
-  ArrowUpRight,
-  ArrowDownRight,
   DollarSign,
   Bitcoin,
   Banknote
 } from "lucide-react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { toast } from "@/hooks/use-toast";
 
 interface WalletBalance {
@@ -146,17 +143,6 @@ const Wallet: React.FC = () => {
               <TrendingUp className="h-8 w-8 text-blue-600" />
               <span className="ml-2 text-xl font-bold text-gray-900">InvestPro</span>
             </div>
-            <nav className="hidden md:flex space-x-8">
-              <Button variant="ghost" onClick={() => navigate("/dashboard")}>
-                Dashboard
-              </Button>
-              <Button variant="ghost" onClick={() => navigate("/trading")}>
-                Trading
-              </Button>
-              <Button variant="ghost" onClick={() => navigate("/portfolio")}>
-                Portfolio
-              </Button>
-            </nav>
             <Button variant="outline" onClick={() => navigate("/")}>
               Logout
             </Button>

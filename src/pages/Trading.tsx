@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -130,20 +129,11 @@ const Trading: React.FC = () => {
               <TrendingUp className="h-8 w-8 text-blue-600" />
               <span className="ml-2 text-xl font-bold text-gray-900">InvestPro</span>
             </div>
-            <nav className="hidden md:flex space-x-8">
-              <Button variant="ghost" onClick={() => navigate("/dashboard")}>
-                Dashboard
+            <div className="flex items-center space-x-4">
+              <Button variant="outline" onClick={() => navigate("/")}>
+                Logout
               </Button>
-              <Button variant="ghost" onClick={() => navigate("/portfolio")}>
-                Portfolio
-              </Button>
-              <Button variant="ghost" onClick={() => navigate("/wallet")}>
-                Wallet
-              </Button>
-            </nav>
-            <Button variant="outline" onClick={() => navigate("/")}>
-              Logout
-            </Button>
+            </div>
           </div>
         </div>
       </header>
@@ -298,88 +288,6 @@ const Trading: React.FC = () => {
           </div>
         </div>
       </div>
-
-      {/* Footer with Navigation */}
-      <footer className="bg-gray-900 text-white mt-24">
-        {/* Footer Navigation Bar */}
-        <div className="bg-gray-800 border-b border-gray-700">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-            <div className="flex flex-wrap justify-center md:justify-between items-center space-y-2 md:space-y-0">
-              <div className="flex items-center space-x-6">
-                <Link to="/dashboard" className="flex items-center text-gray-300 hover:text-white transition-colors">
-                  <TrendingUp className="h-5 w-5 mr-2" />
-                  Dashboard
-                </Link>
-                <Link to="/trading" className="text-gray-300 hover:text-white transition-colors">
-                  Trading
-                </Link>
-                <Link to="/wallet" className="text-gray-300 hover:text-white transition-colors">
-                  Wallet
-                </Link>
-                <Link to="/portfolio" className="text-gray-300 hover:text-white transition-colors">
-                  Portfolio
-                </Link>
-              </div>
-              <div className="flex items-center space-x-4">
-                <Link to="/login">
-                  <Button variant="ghost" size="sm" className="text-gray-300 hover:text-white hover:bg-gray-700">
-                    Login
-                  </Button>
-                </Link>
-                <Link to="/register">
-                  <Button size="sm" className="bg-blue-600 hover:bg-blue-700">
-                    Sign Up
-                  </Button>
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Main Footer Content */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <div className="grid md:grid-cols-4 gap-8">
-            <div>
-              <div className="flex items-center mb-4">
-                <TrendingUp className="h-6 w-6 text-blue-400" />
-                <span className="ml-2 text-lg font-bold">InvestPro</span>
-              </div>
-              <p className="text-gray-400">
-                Professional cryptocurrency and fiat investment platform.
-              </p>
-            </div>
-            <div>
-              <h3 className="font-semibold mb-4">Platform</h3>
-              <ul className="space-y-2 text-gray-400">
-                <li><Link to="/dashboard" className="hover:text-white">Dashboard</Link></li>
-                <li><Link to="/trading" className="hover:text-white">Trading</Link></li>
-                <li><Link to="/wallet" className="hover:text-white">Wallet</Link></li>
-                <li><Link to="/portfolio" className="hover:text-white">Portfolio</Link></li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="font-semibold mb-4">Support</h3>
-              <ul className="space-y-2 text-gray-400">
-                <li><a href="#" className="hover:text-white">Help Center</a></li>
-                <li><a href="#" className="hover:text-white">Contact Us</a></li>
-                <li><a href="#" className="hover:text-white">API Documentation</a></li>
-                <li><a href="#" className="hover:text-white">Security</a></li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="font-semibold mb-4">Legal</h3>
-              <ul className="space-y-2 text-gray-400">
-                <li><a href="#" className="hover:text-white">Terms of Service</a></li>
-                <li><a href="#" className="hover:text-white">Privacy Policy</a></li>
-                <li><a href="#" className="hover:text-white">Compliance</a></li>
-              </ul>
-            </div>
-          </div>
-          <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-            <p>&copy; 2024 InvestPro. All rights reserved.</p>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 };

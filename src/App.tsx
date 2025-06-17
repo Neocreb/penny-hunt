@@ -12,6 +12,7 @@ import Trading from "./pages/Trading";
 import Wallet from "./pages/Wallet";
 import Portfolio from "./pages/Portfolio";
 import NotFound from "./pages/NotFound";
+import FooterNavigation from "./components/FooterNavigation";
 
 const queryClient = new QueryClient();
 
@@ -21,17 +22,20 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/trading" element={<Trading />} />
-          <Route path="/wallet" element={<Wallet />} />
-          <Route path="/portfolio" element={<Portfolio />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <div className="min-h-screen pb-16">
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/trading" element={<Trading />} />
+            <Route path="/wallet" element={<Wallet />} />
+            <Route path="/portfolio" element={<Portfolio />} />
+            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+          <FooterNavigation />
+        </div>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
