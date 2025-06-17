@@ -106,8 +106,44 @@ const Index: React.FC = () => {
         </section>
       </main>
 
-      {/* Footer */}
+      {/* Footer with Navigation */}
       <footer className="bg-gray-900 text-white mt-24">
+        {/* Footer Navigation Bar */}
+        <div className="bg-gray-800 border-b border-gray-700">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <div className="flex flex-wrap justify-center md:justify-between items-center space-y-2 md:space-y-0">
+              <div className="flex items-center space-x-6">
+                <Link to="/dashboard" className="flex items-center text-gray-300 hover:text-white transition-colors">
+                  <TrendingUp className="h-5 w-5 mr-2" />
+                  Dashboard
+                </Link>
+                <Link to="/trading" className="text-gray-300 hover:text-white transition-colors">
+                  Trading
+                </Link>
+                <Link to="/wallet" className="text-gray-300 hover:text-white transition-colors">
+                  Wallet
+                </Link>
+                <Link to="/portfolio" className="text-gray-300 hover:text-white transition-colors">
+                  Portfolio
+                </Link>
+              </div>
+              <div className="flex items-center space-x-4">
+                <Link to="/login">
+                  <Button variant="ghost" size="sm" className="text-gray-300 hover:text-white hover:bg-gray-700">
+                    Login
+                  </Button>
+                </Link>
+                <Link to="/register">
+                  <Button size="sm" className="bg-blue-600 hover:bg-blue-700">
+                    Sign Up
+                  </Button>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Main Footer Content */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="grid md:grid-cols-4 gap-8">
             <div>
