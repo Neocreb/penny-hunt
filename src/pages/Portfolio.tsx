@@ -304,31 +304,18 @@ const Portfolio: React.FC = () => {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
             <div className="flex flex-wrap justify-center md:justify-between items-center space-y-2 md:space-y-0">
               <div className="flex items-center space-x-6">
-                <Link to="/dashboard" className="flex items-center text-gray-300 hover:text-white transition-colors">
-                  <TrendingUp className="h-5 w-5 mr-2" />
-                  Dashboard
-                </Link>
-                <Link to="/trading" className="text-gray-300 hover:text-white transition-colors">
-                  Trading
-                </Link>
-                <Link to="/wallet" className="text-gray-300 hover:text-white transition-colors">
-                  Wallet
-                </Link>
-                <Link to="/portfolio" className="text-gray-300 hover:text-white transition-colors">
-                  Portfolio
-                </Link>
+                Dashboard
+                Trading
+                Wallet
+                Portfolio
               </div>
               <div className="flex items-center space-x-4">
-                <Link to="/login">
-                  <Button variant="ghost" size="sm" className="text-gray-300 hover:text-white hover:bg-gray-700">
-                    Login
-                  </Button>
-                </Link>
-                <Link to="/register">
-                  <Button size="sm" className="bg-blue-600 hover:bg-blue-700">
-                    Sign Up
-                  </Button>
-                </Link>
+                
+                  Login
+                
+                
+                  Sign Up
+                
               </div>
             </div>
           </div>
@@ -349,32 +336,32 @@ const Portfolio: React.FC = () => {
             <div>
               <h3 className="font-semibold mb-4">Platform</h3>
               <ul className="space-y-2 text-gray-400">
-                <li><Link to="/dashboard" className="hover:text-white">Dashboard</Link></li>
-                <li><Link to="/trading" className="hover:text-white">Trading</Link></li>
-                <li><Link to="/wallet" className="hover:text-white">Wallet</Link></li>
-                <li><Link to="/portfolio" className="hover:text-white">Portfolio</Link></li>
+                <li>Dashboard</li>
+                <li>Trading</li>
+                <li>Wallet</li>
+                <li>Portfolio</li>
               </ul>
             </div>
             <div>
               <h3 className="font-semibold mb-4">Support</h3>
               <ul className="space-y-2 text-gray-400">
-                <li><a href="#" className="hover:text-white">Help Center</a></li>
-                <li><a href="#" className="hover:text-white">Contact Us</a></li>
-                <li><a href="#" className="hover:text-white">API Documentation</a></li>
-                <li><a href="#" className="hover:text-white">Security</a></li>
+                <li>Help Center</li>
+                <li>Contact Us</li>
+                <li>API Documentation</li>
+                <li>Security</li>
               </ul>
             </div>
             <div>
               <h3 className="font-semibold mb-4">Legal</h3>
               <ul className="space-y-2 text-gray-400">
-                <li><a href="#" className="hover:text-white">Terms of Service</a></li>
-                <li><a href="#" className="hover:text-white">Privacy Policy</a></li>
-                <li><a href="#" className="hover:text-white">Compliance</a></li>
+                <li>Terms of Service</li>
+                <li>Privacy Policy</li>
+                <li>Compliance</li>
               </ul>
             </div>
           </div>
           <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-            <p>&copy; 2024 InvestPro. All rights reserved.</p>
+            &copy; 2024 InvestPro. All rights reserved.
           </div>
         </div>
       </footer>
