@@ -6,18 +6,19 @@ import {
   BarChart3, 
   Wallet, 
   PieChart,
-  Home
+  Home,
+  Package
 } from "lucide-react";
 
 const FooterNavigation: React.FC = () => {
   const location = useLocation();
   
   const navItems = [
-    { path: "/", icon: Home, label: "Home" },
-    { path: "/dashboard", icon: TrendingUp, label: "Dashboard" },
+    { path: "/dashboard", icon: Home, label: "Home" },
     { path: "/trading", icon: BarChart3, label: "Trading" },
     { path: "/wallet", icon: Wallet, label: "Wallet" },
     { path: "/portfolio", icon: PieChart, label: "Portfolio" },
+    { path: "/packages", icon: Package, label: "Packages" },
   ];
 
   return (
