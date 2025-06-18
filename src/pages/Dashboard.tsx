@@ -141,7 +141,7 @@ const Dashboard: React.FC = () => {
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center">
               <TrendingUp className="h-8 w-8 text-blue-600" />
-              <span className="ml-2 text-xl font-bold text-gray-900">MLM System</span>
+              <span className="ml-2 text-xl font-bold text-gray-900">PennyHunt</span>
             </div>
             <div className="flex items-center space-x-4">
               <Button variant="ghost" onClick={handleRefresh}>

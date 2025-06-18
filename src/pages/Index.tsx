@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, TrendingUp, Shield, Globe } from "lucide-react";
@@ -13,7 +12,7 @@ const Index: React.FC = () => {
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center">
               <TrendingUp className="h-8 w-8 text-blue-600" />
-              <span className="ml-2 text-xl font-bold text-gray-900">MLM System</span>
+              <span className="ml-2 text-xl font-bold text-gray-900">PennyHunt</span>
             </div>
             <nav className="hidden md:flex space-x-8">
               <a href="#features" className="text-gray-600 hover:text-gray-900">Features</a>
@@ -64,7 +63,7 @@ const Index: React.FC = () => {
         {/* Features Section */}
         <section id="features" className="mt-24">
           <h2 className="text-3xl font-bold text-center text-gray-900 mb-16">
-            Why Choose MLM System?
+            Why Choose PennyHunt?
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
             <div className="bg-white p-8 rounded-lg shadow-md">
@@ -95,7 +94,7 @@ const Index: React.FC = () => {
         <section className="mt-24 bg-blue-600 rounded-lg p-12 text-center text-white">
           <h2 className="text-3xl font-bold mb-4">Ready to Start Investing?</h2>
           <p className="text-xl mb-8 opacity-90">
-            Join thousands of investors who trust MLM System for their crypto and fiat investments.
+            Join thousands of investors who trust PennyHunt for their crypto and fiat investments.
           </p>
           <Link to="/register">
             <Button size="lg" variant="secondary" className="text-lg px-8 py-3">
@@ -149,7 +148,7 @@ const Index: React.FC = () => {
             <div>
               <div className="flex items-center mb-4">
                 <TrendingUp className="h-6 w-6 text-blue-400" />
-                <span className="ml-2 text-lg font-bold">MLM System</span>
+                <span className="ml-2 text-lg font-bold">PennyHunt</span>
               </div>
               <p className="text-gray-400">
                 Professional cryptocurrency and fiat investment platform.
@@ -183,7 +182,7 @@ const Index: React.FC = () => {
             </div>
           </div>
           <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-            <p>&copy; 2024 MLM System. All rights reserved.</p>
+            <p>&copy; 2024 PennyHunt. All rights reserved.</p>
           </div>
         </div>
       </footer>
