@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, TrendingUp, Shield, Globe } from "lucide-react";
@@ -20,10 +21,10 @@ const Index: React.FC = () => {
               <a href="#about" className="text-gray-600 hover:text-gray-900">About</a>
             </nav>
             <div className="flex items-center space-x-4">
-              <Link to="/login">
+              <Link to="/auth">
                 <Button variant="ghost">Login</Button>
               </Link>
-              <Link to="/register">
+              <Link to="/auth">
                 <Button className="bg-blue-600 hover:bg-blue-700">
                   Get Started
                   <ArrowRight className="ml-2 h-4 w-4" />
@@ -46,7 +47,7 @@ const Index: React.FC = () => {
             USD, EUR and more. Professional-grade tools for both beginners and experts.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/register">
+            <Link to="/auth">
               <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-lg px-8 py-3">
                 Start Trading Now
                 <ArrowRight className="ml-2 h-5 w-5" />
@@ -96,7 +97,7 @@ const Index: React.FC = () => {
           <p className="text-xl mb-8 opacity-90">
             Join thousands of investors who trust PennyHunt for their crypto and fiat investments.
           </p>
-          <Link to="/register">
+          <Link to="/auth">
             <Button size="lg" variant="secondary" className="text-lg px-8 py-3">
               Create Free Account
               <ArrowRight className="ml-2 h-5 w-5" />
@@ -127,12 +128,12 @@ const Index: React.FC = () => {
                 </Link>
               </div>
               <div className="flex items-center space-x-4">
-                <Link to="/login">
+                <Link to="/auth">
                   <Button variant="ghost" size="sm" className="text-gray-300 hover:text-white hover:bg-gray-700">
                     Login
                   </Button>
                 </Link>
-                <Link to="/register">
+                <Link to="/auth">
                   <Button size="sm" className="bg-blue-600 hover:bg-blue-700">
                     Sign Up
                   </Button>
